@@ -300,6 +300,137 @@ public class C3Exercises {
 
     }
 
+    public static void exercise11(){
+        //(Find the number of days in a month) Write a program that prompts the user to enter
+        //the month and year and displays the number of days in the month. For example, if
+        //the user entered month 2 and year 2012, the program should display that February
+        //2012 has 29 days. If the user entered month 3 and year 2015, the program should
+        //display that March 2015 has 31 days.
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter a month (1-12): ");
+        int month = input.nextInt();
+        System.out.println("Enter a year: ");
+        int year = input.nextInt();
+
+        boolean isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+        switch (month){
+            case 1: System.out.println("January " + year + " has 31 days"); break;
+            case 2: System.out.println("February " + year + " has " + (isLeapYear ? 29 : 28) + " days"); break;
+            case 3: System.out.println("March " + year + " has 31 days"); break;
+            case 4: System.out.println("April " + year + " has 30 days"); break;
+            case 5: System.out.println("May " + year + " has 31 days"); break;
+            case 6: System.out.println("June " + year + " has 30 days"); break;
+            case 7: System.out.println("July " + year + " has 31 days"); break;
+            case 8: System.out.println("August " + year + " has 31 days"); break;
+            case 9: System.out.println("September " + year + " has 30 days"); break;
+            case 10: System.out.println("October " + year + " has 31 days"); break;
+            case 11: System.out.println("November " + year + " has 30 days"); break;
+            case 12: System.out.println("December " + year + " has 31 days"); break;
+        }
+    }
+
+    public static void exercise12(){
+        //(Palindrome integer) Write a program that prompts the user to enter a three-digit
+        //integer and determines whether it is a palindrome integer. An integer is palindrome
+        //if it reads the same from right to left and from left to right. A negative integer is
+        //treated the same as a positive integer.
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter a three-digit integer: ");
+        int number = input.nextInt();
+
+        int originalNumber = number;
+        int lastDigit = number % 10;
+        number /= 10;
+        int middleDigit = number % 10;
+        number /= 10;
+        int firstDigit = number;
+
+        if (firstDigit == lastDigit) {
+            System.out.println(originalNumber + " is a palindrome");
+        } else {
+            System.out.println(originalNumber + " is not a palindrome");
+        }
+    }
+
+    public static void exercise13(){
+        //(Financial application: compute taxes) Listing 3.5, ComputeTax.java, gives the
+        //source code to compute taxes for single filers. Complete this program to compute
+        //taxes for all filing statuses
+
+        ComputeTax computeTax = new ComputeTax();
+
+    }
+
+    public static void exercise14(){
+        //Game: heads or tails) Write a program that lets the user guess whether the flip of
+        //a coin results in heads or tails. The program randomly generates an integer 0 or 1,
+        //which represents head or tail. The program prompts the user to enter a guess, and
+        //reports whether the guess is correct or incorrect
+
+        int coin = (int)(Math.random() * 2);
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter 0 for heads or 1 for tails: ");
+        int guess = input.nextInt();
+
+        if (coin == guess) {
+            System.out.println("Correct guess");
+        } else {
+            System.out.println("Incorrect guess");
+        }
+    }
+
+    public static void exercise15(){
+        //(Game: lottery) Revise Listing 3.8, Lottery.java, to generate a lottery of a three-digit
+        //number. The program prompts the user to enter a three-digit number and determines
+        //whether the user wins according to the following rules:
+        //1. If the user input matches the lottery number in the exact order, the award is
+        //$12,000.
+        //2. If all digits in the user input match all digits in the lottery number, the award is
+        //$5,000.
+        //3. If one digit in the user input matches a digit in the lottery number, the award is
+        //$2,000.
+
+        int lottery = (int)(Math.random() * 1000);
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter your lottery pick (three digits): ");
+        int guess = input.nextInt();
+
+        int lotteryDigit1 = lottery / 100;
+        int lotteryDigit2 = lottery / 10 % 10;
+        int lotteryDigit3 = lottery % 10;
+
+        int guessDigit1 = guess / 100;
+        int guessDigit2 = guess / 10 % 10;
+        int guessDigit3 = guess % 10;
+
+        System.out.println("The lottery number is " + lottery);
+
+        if (guess == lottery) {
+            System.out.println("Exact match: you win $12,000");
+        } else if (guessDigit1 == lotteryDigit2 && guessDigit2 == lotteryDigit1 && guessDigit3 == lotteryDigit3
+                || guessDigit1 == lotteryDigit2 && guessDigit2 == lotteryDigit3 && guessDigit3 == lotteryDigit1
+                || guessDigit1 == lotteryDigit3 && guessDigit2 == lotteryDigit1 && guessDigit3 == lotteryDigit2
+                || guessDigit1 == lotteryDigit3 && guessDigit2 == lotteryDigit2 && guessDigit3 == lotteryDigit1
+                || guessDigit1 == lotteryDigit1 && guessDigit2 == lotteryDigit3 && guessDigit3 == lotteryDigit2) {
+            System.out.println("Match all digits: you win $5,000");
+        } else if (guessDigit1 == lotteryDigit1 || guessDigit1 == lotteryDigit2 || guessDigit1 == lotteryDigit3
+                || guessDigit2 == lotteryDigit1 || guessDigit2 == lotteryDigit2 || guessDigit2 == lotteryDigit3
+                || guessDigit3 == lotteryDigit1 || guessDigit3 == lotteryDigit2 || guessDigit3 == lotteryDigit3) {
+            System.out.println("Match one digit: you win $2,000");
+        } else {
+            System.out.println("Sorry, no match");
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Exercise 1");
         exercise1();
@@ -319,6 +450,18 @@ public class C3Exercises {
         exercise8();
         System.out.println("Exercise 9");
         exercise9();
+        System.out.println("Exercise 10");
+        exercise10();
+        System.out.println("Exercise 11");
+        exercise11();
+        System.out.println("Exercise 12");
+        exercise12();
+        System.out.println("Exercise 13");
+        exercise13();
+        System.out.println("Exercise 14");
+        exercise14();
+        System.out.println("Exercise 15");
+        exercise15();
 
     }
 }
