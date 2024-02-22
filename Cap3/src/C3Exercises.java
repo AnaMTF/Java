@@ -431,6 +431,113 @@ public class C3Exercises {
         }
     }
 
+    public static void exercise16(){
+        //(Random point) Write a program that displays a random coordinate in a rectangle.
+        //The rectangle is centred at (0, 0) with width 50 and height 150
+
+        int x = (int)(Math.random() * 50);
+        int y = (int)(Math.random() * 150);
+
+        System.out.println("Random point: (" + x + ", " + y + ")");
+    }
+
+    public static void exercise17(){
+        //(Game: scissor, rock, paper) Write a program that plays the popular scissor–rock–
+        //paper game. (A scissor can cut a paper, a rock can knock a scissor, and a paper can
+        //wrap a rock.) The program randomly generates a number 0, 1, or 2 representing
+        //scissor, rock, and paper. The program prompts the user to enter a number 0, 1, or
+        //2 and displays a message indicating whether the user or the computer wins, loses,
+        //or draws.
+
+        int computer = (int)(Math.random() * 3);
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter 0 for scissor, 1 for rock, 2 for paper: ");
+        int user = input.nextInt();
+
+        if (computer == user) {
+            System.out.println("It is a draw");
+        } else if (user == 0 && computer == 2 || user == 1 && computer == 0 || user == 2 && computer == 1) {
+            System.out.println("You win");
+        } else {
+            System.out.println("You lose");
+        }
+    }
+
+    public static void exercise18(){
+        //(Cost of shipping) A shipping company uses the following function to calculate the
+        //cost (in dollars) of shipping based on the weight of the package (in pounds).
+        //c(w) = d
+        //2.5, if 0 6 w 6 = 2
+        //4.5, if 2 6 w 6 = 4
+        //7.5, if 4 6 w 6 = 10
+        //10.5, if 10 6 w 6 = 20
+        //Write a program that prompts the user to enter the weight of the package and
+        //display the shipping cost. If the weight is greater than 20, display a message “the
+        //package cannot be shipped.”
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the weight of the package: ");
+        double weight = input.nextDouble();
+
+        if (weight > 20) {
+            System.out.println("The package cannot be shipped");
+        } else if (weight <= 2) {
+            System.out.println("The shipping cost is $" + (weight * 2.5));
+        } else if (weight <= 4) {
+            System.out.println("The shipping cost is $" + (weight * 4.5));
+        } else if (weight <= 10) {
+            System.out.println("The shipping cost is $" + (weight * 7.5));
+        } else {
+            System.out.println("The shipping cost is $" + (weight * 10.5));
+        }
+    }
+
+    public static void exercise19(){
+        //Compute the perimeter of a triangle) Write a program that reads three edges for a
+        //triangle and computes the perimeter if the input is valid. Otherwise, display that the
+        //input is invalid. The input is valid if the sum of every pair of two edges is greater
+        //than the remaining edge
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter three edges for a triangle: ");
+        double edge1 = input.nextDouble();
+        double edge2 = input.nextDouble();
+        double edge3 = input.nextDouble();
+
+        if (edge1 + edge2 > edge3 && edge1 + edge3 > edge2 && edge2 + edge3 > edge1) {
+            System.out.println("The perimeter is " + (edge1 + edge2 + edge3));
+        } else {
+            System.out.println("The input is invalid");
+        }
+    }
+
+    public static void exercise20(){
+        //(Science: wind-chill temperature) Programming Exercise 2.17 gives a formula to
+        //compute the wind-chill temperature. The formula is valid for temperatures in the
+        //range between -58°F and 41°F and wind speed greater than or equal to 2. Write
+        //a program that prompts the user to enter a temperature and a wind speed. The program
+        // displays the wind-chill temperature if the input is valid; otherwise, it displays
+        //a message indicating whether the temperature and/or wind speed is invalid
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the temperature in Fahrenheit between -58°F and 41°F: ");
+        double temperature = input.nextDouble();
+        System.out.println("Enter the wind speed (>=2) in miles per hour: ");
+        double speed = input.nextDouble();
+
+        if (temperature < -58 || temperature > 41 || speed < 2) {
+            System.out.println("The temperature and/or wind speed is invalid");
+        } else {
+            double windChill = 35.74 + 0.6215 * temperature - 35.75 * Math.pow(speed, 0.16) + 0.4275 * temperature * Math.pow(speed, 0.16);
+            System.out.println("The wind chill index is " + windChill);
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Exercise 1");
         exercise1();
@@ -462,6 +569,12 @@ public class C3Exercises {
         exercise14();
         System.out.println("Exercise 15");
         exercise15();
+        System.out.println("Exercise 16");
+        exercise16();
+        System.out.println("Exercise 17");
+        exercise17();
+        System.out.println("Exercise 18");
+        exercise18();
 
     }
 }
